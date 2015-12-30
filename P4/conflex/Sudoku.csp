@@ -1,0 +1,139 @@
+
+##########################################
+###   Requetes, Parametres et Options  ###
+##########################################
+ 
+\alpha = 0.1;
+\filtering : f ;
+\search : 
+#	bt ,
+	fc,
+#	rfla,
+
+#	first_solution
+	all_solutions
+#	best_solution
+#	first_solutions 5
+;
+#\static_labeling_order  :
+#	smallest_domain 
+#	greatest_degree
+#	smallest_domain_by_degree
+;
+#\dynamic_labeling_order :
+#	smallest_domain 
+#	smallest_domain_by_degree
+#
+;
+\verbose : 
+	display_solutions 
+#	display_csp
+#	display_filtering
+#	display_search
+#       display_intervals
+;
+#\value_order
+#bottom_first
+#top_first
+#mid_first
+;
+
+##############################
+### VARIABLES ###
+##############################
+#Cada fila representa los valores de una cuadricula
+\vi :X11,X12,X13,X14,X15,X16,X17,X18,X19, 
+     X21,X22,X23,X24,X25,X26,X27,X28,X29, 
+     X31,X32,X33,X34,X35,X36,X37,X38,X39, 
+     X41,X42,X43,X44,X45,X46,X47,X48,X49,
+     X51,X52,X53,X54,X55,X56,X57,X58,X59,
+     X61,X62,X63,X64,X65,X66,X67,X68,X69,
+     X71,X72,X73,X74,X75,X76,X77,X78,X79,
+     X81,X82,X83,X84,X85,X86,X87,X88,X89,
+     X91,X92,X93,X94,X95,X96,X97,X98,X99 1..9;
+
+##############################
+### RESTRICCIONES ###
+##############################
+
+##Restricciones para las filas ##
+
+\cim : fila1 , <>(X11,X12,X13,X21,X22,X23,X31,X32,X33);
+\cim : fila2 , <>(X14,X15,X16,X24,X25,X26,X34,X35,X36);
+\cim : fila3 , <>(X17,X18,X19,X27,X28,X29,X37,X38,X39);
+
+\cim : fila4 , <>(X41,X42,X43,X51,X52,X53,X61,X62,X63);
+\cim : fila5 , <>(X44,X45,X46,X54,X55,X56,X64,X65,X66);
+\cim : fila6 , <>(X47,X48,X49,X57,X58,X59,X67,X68,X69);
+
+\cim : fila7 , <>(X71,X72,X73,X81,X82,X83,X91,X92,X93);
+\cim : fila8 , <>(X74,X75,X76,X84,X85,X86,X94,X95,X96);
+\cim : fila9 , <>(X77,X78,X79,X87,X88,X89,X97,X98,X99);
+
+#Restricciones para las columnas ##
+
+\cim : columna1 , <>(X11,X14,X17,X41,X44,X47,X71,X74,X77);
+\cim : columna2 , <>(X12,X15,X18,X42,X45,X48,X72,X75,X78);
+\cim : columna3 , <>(X13,X16,X19,X43,X46,X49,X73,X76,X79);
+
+\cim : columna4 , <>(X21,X24,X27,X51,X54,X57,X81,X84,X87);
+\cim : columna5 , <>(X22,X25,X28,X52,X55,X58,X82,X85,X88);
+\cim : columna6 , <>(X23,X26,X29,X53,X56,X59,X83,X86,X89);
+
+\cim : columna7 , <>(X31,X34,X37,X61,X64,X67,X91,X94,X97);
+\cim : columna8 , <>(X32,X35,X38,X62,X65,X68,X92,X95,X98);
+\cim : columna9 , <>(X33,X36,X39,X63,X66,X69,X93,X96,X99);
+
+
+##Restricciones para las regiones ##
+
+\cim : cuadricula1 , <>(X11,X12,X13,X14,X15,X16,X17,X18,X19); 
+\cim : cuadricula2 , <>(X21,X22,X23,X24,X25,X26,X27,X28,X29); 
+\cim : cuadricula3 , <>(X31,X32,X33,X34,X35,X36,X37,X38,X39); 
+\cim : cuadricula4 , <>(X41,X42,X43,X44,X45,X46,X47,X48,X49); 
+\cim : cuadricula5 , <>(X51,X52,X53,X54,X55,X56,X57,X58,X59); 
+\cim : cuadricula6 , <>(X61,X62,X63,X64,X65,X66,X67,X68,X69); 
+\cim : cuadricula7 , <>(X71,X72,X73,X74,X75,X76,X77,X78,X79); 
+\cim : cuadricula8 , <>(X81,X82,X83,X84,X85,X86,X87,X88,X89); 
+\cim : cuadricula9 , <>(X91,X92,X93,X94,X95,X96,X97,X98,X99); 
+
+##Inicialización de valores conocidos
+\ci : r1 , X12=6;
+\ci : r2 , X16=8;
+\ci : r3 , X17=2;
+
+\ci : r4 , X21=1;
+\ci : r5 , X23=4;
+\ci : r3 , X24=3;
+\ci : r3 , X26=5;
+
+\ci : r3 , X32=5;
+\ci : r3 , X34=6;
+\ci : r3 , X39=1;
+
+\ci : r3 , X41=8;
+\ci : r3 , X46=6;
+\ci : r3 , X47=7;
+
+\ci : r3 , X51=4;
+\ci : r3 , X53=7;
+\ci : r3 , X57=9;
+\ci : r3 , X59=1;
+
+\ci : r3 , X63=6;
+\ci : r3 , X64=3;
+\ci : r3 , X69=4;
+
+\ci : r3 , X71=5;
+\ci : r3 , X76=7;
+\ci : r3 , X78=4;
+
+\ci : r3 , X84=2;
+\ci : r3 , X86=6;
+\ci : r3 , X87=5;
+\ci : r3 , X89=8;
+
+\ci : r3 , X93=2;
+\ci : r3 , X94=9;
+\ci : r3 , X98=7;
+

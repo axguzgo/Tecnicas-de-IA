@@ -1,0 +1,167 @@
+
+##########################################
+###   Requetes, Parametres et Options  ###
+##########################################
+ 
+\alpha = 0.1;
+\filtering : f ;
+\search : 
+#	bt ,
+	fc,
+#	rfla,
+
+	first_solution
+#	all_solutions
+#	best_solution
+#	first_solutions 5
+;
+#\static_labeling_order  :
+#	smallest_domain 
+#	greatest_degree
+#	smallest_domain_by_degree
+;
+#\dynamic_labeling_order :
+#	smallest_domain 
+#	smallest_domain_by_degree
+#
+;
+\verbose : 
+	display_solutions 
+#	display_csp
+#	display_filtering
+#	display_search
+#       display_intervals
+;
+#\value_order
+#bottom_first
+#top_first
+#mid_first
+;
+
+##############################
+### VARIABLES ###
+##############################
+
+\vi : H1,H2,H3,H4,H5,H6,H7,H8,H9 1..18;
+\vi : M1,M2,M3,M4,M5,M6,M7,M8,M9 1..18;
+
+##############################
+### RESTRICCIONES ###
+##############################
+
+##Restricciones para las filas ##
+
+
+
+#Restricción básica: Dos comensales no pueden snetarse en el mismo sitio
+\cim : restriccionSitio, <>(H1,H2,H3,H4,H5,H6,H7,H8,H9,M1,M2,M3,M4,M5,M6,M7,M8,M9);
+
+#Restricción 1 : H2 no debe sentarse al lado de H1, M4, H5 ni H9 
+\ci : restriccion1,  H2+1<>H1;
+\ci : restriccion2,  H2-1<>H1;
+
+\ci : restriccion1,  H2+1<>M4;
+\ci : restriccion1,  H2-1<>M4;
+
+\ci : restriccion1,  H2+1<>H5;
+\ci : restriccion1,  H2-1<>H5;
+
+\ci : restriccion1,  H2+1<>H9;
+\ci : restriccion1,  H2-1<>H9;
+
+#Restricción 2: M3 no puede sentarse al lado de ninguna otra mujer. 
+\ci : restriccion2,  M3+1<>M1;
+\ci : restriccion2,  M3+1<>M2;
+\ci : restriccion2,  M3+1<>M4;
+\ci : restriccion2,  M3+1<>M5;
+\ci : restriccion2,  M3+1<>M6;
+\ci : restriccion2,  M3+1<>M7;
+\ci : restriccion2,  M3+1<>M8;
+\ci : restriccion2,  M3+1<>M9;
+
+\ci : restriccion2,  M3-1<>M1;
+\ci : restriccion2,  M3-1<>M2;
+\ci : restriccion2,  M3-1<>M4;
+\ci : restriccion2,  M3-1<>M5;
+\ci : restriccion2,  M3-1<>M6;
+\ci : restriccion2,  M3-1<>M7;
+\ci : restriccion2,  M3-1<>M8;
+\ci : restriccion2,  M3-1<>M9;
+
+#Restricción 3: H7 no puede sentarse al lado de ningún hombre, ni de M3 
+
+\ci : restriccion3,  H7+1<>H1;
+\ci : restriccion3,  H7+1<>H2;
+\ci : restriccion3,  H7+1<>H4;
+\ci : restriccion3,  H7+1<>H5;
+\ci : restriccion3,  H7+1<>H6;
+\ci : restriccion3,  H7+1<>H7;
+\ci : restriccion3,  H7+1<>H8;
+\ci : restriccion3,  H7+1<>H9;
+\ci : restriccion3,  H7+1<>M3;
+
+\ci : restriccion3,  H7-1<>H1;
+\ci : restriccion3,  H7-1<>H2;
+\ci : restriccion3,  H7-1<>H4;
+\ci : restriccion3,  H7-1<>H5;
+\ci : restriccion3,  H7-1<>H6;
+\ci : restriccion3,  H7-1<>H7;
+\ci : restriccion3,  H7-1<>H8;
+\ci : restriccion3,  H7-1<>H9;
+\ci : restriccion3,  H7+1<>M3;
+
+#Restricción 4: H5 debe sentarse al lado de M4, M8, H2, H3 o H7. Pero no debe sentarse al lado de M5. 
+
+\ci : restriccion3,  H5+1<>M5;
+\ci : restriccion3,  H5-1<>M5;
+
+\doc: Doc1
+	\ci : restriccion3 ,H5-1=M4;
+	\or
+	\ci : restriccion3 ,H5+1=M4;
+	
+	\or
+	\ci : restriccion3 ,H5-1=M8;
+	\or
+	\ci : restriccion3 ,H5+1=M8;
+	
+	\or
+	\ci : restriccion3 ,H5-1=H2;
+	\or
+	\ci : restriccion3 ,H5+1=H2;
+	
+	\or
+	\ci : restriccion3 ,H5-1=H3;
+	\or
+	\ci : restriccion3 ,H5+1=H3;
+	
+	\or
+	\ci : restriccion3 ,H5-1=H7;
+	\or
+	\ci : restriccion3 ,H5+1=H7;
+	;
+#Restriccion 5 : El matrimonio 1 no puede sentarse junto a ningún miembro del matrimonio 5, 6, 8, 9 
+#Restriccion 6 :Al menos un miembro del matrimonio 4 debe sentarse junto a un miembro del matrimonio 1 o del
+matrimonio 9 
+#Restriccion 7 : Ningún miembro del matrimonio 7 u 8 puede sentarse en un extremo de la mesa. 
+\ci: restriccion 7, H7<>18
+\ci: restriccion 7, H7<>1
+\ci: restriccion 7, H7<>9
+\ci: restriccion 7, H7<>10
+
+\ci: restriccion 7, M7<>18
+\ci: restriccion 7, M7<>1
+\ci: restriccion 7, M7<>9
+\ci: restriccion 7, M7<>10
+
+\ci: restriccion 7, H8<>18
+\ci: restriccion 7, H8<>1
+\ci: restriccion 7, H8<>9
+\ci: restriccion 7, H8<>10
+
+\ci: restriccion 7, H8<>18
+\ci: restriccion 7, H8<>1
+\ci: restriccion 7, H8<>9
+\ci: restriccion 7, H8<>10
+
+
